@@ -88,6 +88,14 @@ section {
   color: #00203F;
 }
 
+.popup .genre {
+  margin-bottom: 10px;
+}
+
+.popup .actors {
+  margin-bottom: 10px;
+}
+
 .popup {
   position: fixed;
   top: 0;
@@ -124,7 +132,7 @@ section {
 .popup .content .plot {
   display: flex;
   flex-wrap: wrap;
-  margin: 0px -15px 30 px;
+  margin: 0px -15px 30px;
 }
 
 .popup .content .plot img {
@@ -150,7 +158,7 @@ section {
   outline: none;
   appearance: none;
   cursor: pointer;
-  transition: 0.4% ease-out;
+  transition: 0.4s ease-out;
 }
 
 .popup .content .close:hover {
