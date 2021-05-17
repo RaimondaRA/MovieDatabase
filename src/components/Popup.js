@@ -23,10 +23,4 @@ function Popup({selected, closePopup}) {
         </section>
     )
 }
-
-
-
-
-
-
 export default Popup
