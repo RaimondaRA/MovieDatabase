@@ -5,8 +5,9 @@ function Results({results, openPopup}) {
     return (
         <section className="results">
             {results.map(result => (
-                <Film key={result.imdbID} result={result} openPopup={openPopup} />
+                <Film key={result.imdbID} result={result} openPopup={openPopup}/>
             ))}
+            
         </section>
      
     )

@@ -4,30 +4,35 @@ import Search from './components/Search';
 import Results from './components/Results';
 import Popup from './components/Popup';
 
+
 function App() {
   const [state, setState] = useState ({
-    s: "",
+    s: "", //search uzklausa
     results: [],
-    selected: {}
+    selected: {} //paspaudimas ant konkretaus filmo
   });
+  
   const apiurl = "https://www.omdbapi.com/?apikey=e4db3ced&t=&i"; 
 
   const search = (e) => {
-    if (e.key =="Enter") {
-      axios(apiurl + "&s=" + state.s).then(({data}) =>{
+      if (e.key ==="Enter"){
+          if (state.s!=="") {
+      axios(apiurl + "&s=" + state.s).then(({data}) =>{ //atidaro duomenu baze nudojant api
         let results = data.Search;
-        setState(prevState => {
+        setState(prevState => { 
           return {...prevState, results: results}
         })
       }); 
     }
-  }
-  
-const handleInput = (e) => {
-  let s = e.target.value;
+  else alert ("Couldn't find any movie. Please search again using another search criteria")
+}
+}
+            
+const handleInput = (e) => { //kai vedama reiksme i input lauka
+  let s = e.target.value; //s - reiksme
 
   setState(prevState => {
-    return { ...prevState, s: s}
+    return { ...prevState, s: s} //paimama ankstesne reiksme. Pakeiciama s value s reiksme kuria gauname 33 eilutej
   });
 }
 
@@ -55,10 +60,11 @@ const closePopup = () => {
         <h1>MOVIE DATABASE</h1>
       </header>
       <main>
-        <Search handleInput = {handleInput} search = {search}/>
+      {/* perduodame parametra handleInput */}
+        <Search handleInput = {handleInput} search = {search}/> 
         <Results results={state.results} openPopup={openPopup}/>
         {(typeof state.selected.Title != "undefined") ? <Popup selected={state.selected} closePopup={closePopup} /> : false}
-      </main>
+        </main>
     </div>
   );
 }
